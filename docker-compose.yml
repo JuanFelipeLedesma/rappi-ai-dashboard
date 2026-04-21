@@ -4,9 +4,10 @@ services:
     container_name: rappi-backend
     ports:
       - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
     environment:
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL:-claude-opus-4-7}
       - DATA_DIR=/app/data
     volumes:
       - ./data:/app/data:ro
