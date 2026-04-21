@@ -1,0 +1,8 @@
+.env
+node_modules/
+__pycache__/
+.next/
+.DS_Store
+*.pyc
+archivo.zip
+prueba.docx
