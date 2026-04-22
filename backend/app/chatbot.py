@@ -1,9 +1,3 @@
-"""Semantic chatbot: Claude API + tool use over the availability dataset.
-
-The LLM never sees raw data. Instead it has a toolbox of analytics
-functions and must decide which to call. Tool results come back and the
-LLM synthesizes a natural language answer.
-"""
 from __future__ import annotations
 
 import json
