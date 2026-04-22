@@ -124,7 +124,11 @@
 >
 > Aquí está la gráfica de **promedio por hora del día**. Se ve claro: mínimo cerca de las 6am, pico entre 2pm y 4pm. La forma de esta curva es la que justifica el heatmap de al lado.
 >
-> El **heatmap semanal**: filas son días de la semana, columnas son horas. Los cuadrados más naranjas son más tiendas. Lo que salta a la vista es que los fines de semana son ligeramente distintos a los días laborales — el viernes es el día de más disponibilidad promedio.
+> El **heatmap semanal**: filas son días de la semana, columnas son horas. Los cuadrados más naranjas son más tiendas.
+>
+> **[Señalar el toggle arriba a la derecha del heatmap]** Un detalle de diseño que vale la pena: arriba tiene un toggle con tres escalas de color. Déjenme mostrarles por qué. **[Click "Lineal"]** Con la escala lineal — que es la default de cualquier librería — los valores de los picos saturan todo y se pierde el detalle en la madrugada. **[Click "Log"]** Con log se diferencian mejor las horas bajas pero los picos se comprimen. **[Click "Percentil"]** Con escala por percentil, cada nivel de color cubre la misma cantidad de celdas — hay diferenciación visual en toda la matriz, es lo que un analista quiere.
+>
+> Lo que salta a la vista ahora: los fines de semana son ligeramente distintos a los días laborales — el viernes es el día de más disponibilidad promedio.
 >
 > Finalmente, la **tabla de caídas**: el backend busca ventanas de cinco minutos donde el promedio cae más de X por ciento respecto a la ventana anterior. El umbral es configurable. Con umbral del diez por ciento, las caídas que aparecen son las más severas — esos son los incidentes reales.
 

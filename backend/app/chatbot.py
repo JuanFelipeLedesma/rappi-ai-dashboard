@@ -5,7 +5,7 @@ import os
 from typing import Any
 
 import pandas as pd
-from anthropic import Anthropic
+from anthropic import Anthropic, APIStatusError, AuthenticationError, BadRequestError
 
 from . import analytics
 
@@ -174,13 +174,36 @@ class Chatbot:
         tool_calls: list[dict] = []
 
         for _ in range(6):  # max 6 rounds of tool use
-            resp = self.client.messages.create(
-                model=MODEL,
-                max_tokens=1024,
-                system=system,
-                tools=TOOLS,
-                messages=messages,
-            )
+            try:
+                resp = self.client.messages.create(
+                    model=MODEL,
+                    max_tokens=1024,
+                    system=system,
+                    tools=TOOLS,
+                    messages=messages,
+                )
+            except BadRequestError as e:
+                msg = str(e).lower()
+                if "credit balance" in msg or "billing" in msg:
+                    return {
+                        "reply": (
+                            "La cuenta de Anthropic no tiene saldo. "
+                            "Agrega créditos en https://console.anthropic.com/settings/billing "
+                            "y vuelve a intentar."
+                        ),
+                        "tool_calls": tool_calls,
+                    }
+                return {"reply": f"Error del modelo: {e}", "tool_calls": tool_calls}
+            except AuthenticationError:
+                return {
+                    "reply": (
+                        "La ANTHROPIC_API_KEY es inválida o fue revocada. "
+                        "Revisa tu .env y reinicia el backend."
+                    ),
+                    "tool_calls": tool_calls,
+                }
+            except APIStatusError as e:
+                return {"reply": f"El proveedor respondió {e.status_code}: {e}", "tool_calls": tool_calls}
 
             if resp.stop_reason == "tool_use":
                 tool_uses = [b for b in resp.content if b.type == "tool_use"]
