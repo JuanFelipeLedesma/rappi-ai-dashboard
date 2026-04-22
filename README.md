@@ -5,6 +5,10 @@ Todo corre con **un solo comando**: `docker compose up`.
 
 ![stack](https://img.shields.io/badge/stack-FastAPI_+_Next.js_+_Claude-FF441F)
 
+## 🎥 Demo en video (10 min)
+
+**[▶ Ver demo en YouTube](https://youtu.be/yX3YcnpyEiA)** — presentación completa: entendimiento del problema, de los datos, arquitectura, decisión Tool Use vs RAG, dashboard y chatbot en vivo.
+
 ---
 
 ## Cómo correrlo

@@ -1,5 +1,6 @@
 # Guion de video · Prueba Técnica AI Interns 2026
 
+**Video grabado:** https://youtu.be/yX3YcnpyEiA
 **Duración objetivo:** 10:00 minutos
 **Autor:** Juan Felipe Ledesma Velásquez
 **Proyecto:** Rappi · AI-Powered Availability Dashboard
